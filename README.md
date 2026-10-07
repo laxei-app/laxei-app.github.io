@@ -15,6 +15,11 @@ the source code of any app.
 | `index.html` | <https://laxei-app.github.io/> |
 | `privacy.html` | <https://laxei-app.github.io/privacy.html> — privacy policy for TwyLapse (English) |
 | `privacy.jp.html` | <https://laxei-app.github.io/privacy.jp.html> — same policy in Japanese |
+| `twylapse/index.html` | TwyLapse product page (English) |
+| `twylapse/index.jp.html` | same in Japanese |
+| `twylapse/manual.html` | TwyLapse manual (English) |
+| `twylapse/manual.jp.html` | same in Japanese |
+| `assets/site.css` | shared style of the product pages |
 
 `privacy.html#delete` is the anchor registered in the Play Console as the way
 to request deletion of collected data. **Do not rename these files or move the
@@ -23,10 +28,20 @@ declaration, and they have to keep working for as long as the apps are listed.
 
 ## Editing
 
-Plain, self-contained HTML. Each page carries its own CSS inline and loads
-**no external stylesheet, font, script or image**, so the site sets no cookies
-and no request leaves the visitor's browser — which is the least a privacy
-policy should do. Please keep it that way.
+Plain HTML. Nothing is loaded from another site — **no external stylesheet,
+font, script or image** — so the site sets no cookies and no request leaves
+for a third party. Please keep it that way.
+
+- The privacy policy and the top page carry their own CSS inline and use no
+  images. Keep them that simple.
+- The product pages and manuals (`twylapse/`) share `assets/site.css` and may
+  use images, as long as the images are stored in this repository
+  (e.g. `twylapse/images/`). Prefer WebP, about 1080 px wide, with
+  `width`/`height` and `loading="lazy"`.
+- English is the main language; every page has a Japanese twin with the same
+  name plus `.jp` (`manual.html` / `manual.jp.html`). Change both together.
+- Spans marked `class="todo"` are draft notes. None may remain on a page that
+  is linked from the store.
 
 The English and the Japanese policy are two renderings of the same document.
 **Change both together**, and update the effective date at the top of each.

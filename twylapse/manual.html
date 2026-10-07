@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">  <!-- draft: remove when the todo markers are gone -->
+<title>TwyLapse manual</title>
+<meta name="description" content="How to plan and shoot a dusk-to-dawn time-lapse with TwyLapse: shoot plans, capture control, phone camera, Canon cameras and external devices.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" hreflang="en" href="manual.html">
+<link rel="alternate" hreflang="ja" href="manual.jp.html">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">laxei</a>
+    <nav class="site-nav">
+      <a href="index.html">TwyLapse</a>
+      <a href="manual.html" aria-current="page">Manual</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+    <a class="lang" href="manual.jp.html" hreflang="ja" lang="ja">日本語</a>
+  </div>
+</header>
+
+<div class="manual">
+
+<details class="toc" open>
+  <summary>Contents</summary>
+  <ol>
+    <li><a href="#start">Before you start</a></li>
+    <li><a href="#permissions">First launch and permissions</a></li>
+    <li><a href="#concepts">How TwyLapse plans a night</a></li>
+    <li><a href="#plan">Making a shoot plan</a></li>
+    <li><a href="#exposure">Adjusting the exposure</a></li>
+    <li><a href="#phone">Shooting with the phone camera</a></li>
+    <li><a href="#camera">Shooting with a Canon camera</a></li>
+    <li><a href="#edge">Using an external device</a></li>
+    <li><a href="#after">After the shoot</a></li>
+    <li><a href="#trouble">Messages and troubleshooting</a></li>
+    <li><a href="#addons">Add-ons, trial and refunds</a></li>
+    <li><a href="#other">Other settings</a></li>
+  </ol>
+</details>
+
+<main>
+
+<h1>TwyLapse manual</h1>
+<p class="lead">How to plan a night, set the exposure, and shoot a time-lapse from dusk to dawn.</p>
+<p>Names in <strong>bold</strong> are what you see on the screen. This manual is for app version <span class="todo">x.y</span>.</p>
+
+<!-- ============================================================ -->
+<h2 id="start">1. Before you start</h2>
+
+<h3>What you need</h3>
+<ul>
+  <li>An Android phone running Android 8.0 or later.</li>
+  <li>A sturdy tripod. A time-lapse shows every bump.</li>
+  <li>Power for the whole night: a power bank for the phone, and spare batteries or a mains adapter for the camera.</li>
+  <li>To use your own camera: a Canon camera that supports CCAPI, and the <strong>Shoot with an external camera</strong> add-on (see <a href="#addons">chapter 11</a>).</li>
+  <li>To shoot without leaving your phone by the camera: an M5Stack CoreS3 or M5StickS3, and the <strong>Control the camera from an external device</strong> add-on.</li>
+</ul>
+
+<h3>Which way to shoot?</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Setup</th><th>Good for</th><th>Chapter</th></tr></thead>
+  <tbody>
+    <tr><td>Phone camera only</td><td>Trying it out; phones that are good in the dark</td><td><a href="#phone">6</a></td></tr>
+    <tr><td>Phone controls a Canon camera</td><td>Best image quality; you stay near the camera</td><td><a href="#camera">7</a></td></tr>
+    <tr><td>External device controls the camera</td><td>Leaving the camera alone all night; several cameras</td><td><a href="#edge">8</a></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="permissions">2. First launch and permissions</h2>
+
+<div class="step">
+  <figure class="shot"><div class="ph">Screenshot: Permissions and settings</div></figure>
+  <div>
+    <p>On first launch the app asks whether it may send crash records and usage statistics. Your photographs, the dates you shot, your coordinates and anything you type are never sent. Saying no changes nothing in the app, and you can change it later under <strong>Menu → Permissions and settings</strong>.</p>
+    <p><strong>Permissions and settings</strong> lists everything the app needs. Items in red still need setting; tap one to fix it.</p>
+  </div>
+</div>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Item</th><th>What it is for</th><th>Needed?</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Camera permission</strong></td><td>Shooting with the phone camera; reading the setup QR code of an external device</td><td>Not if you only use an external camera</td></tr>
+    <tr><td><strong>Location permission</strong></td><td>Making a location from where you are. The location stays on the phone.</td><td>Optional — you can pick on a map or paste coordinates instead</td></tr>
+    <tr><td><strong>Nearby devices permission (Bluetooth)</strong></td><td>Finding, registering and configuring external devices</td><td>Only with an external device</td></tr>
+    <tr><td><strong>Notification permission</strong></td><td>The “Shooting” notification, so you can watch progress and stop a shoot after closing the app</td><td>Recommended</td></tr>
+    <tr><td><strong>Exempt from battery optimisation</strong></td><td>Stops the phone from ending a long shoot part-way through</td><td><strong>Yes, for long shoots</strong></td></tr>
+    <tr><td><strong>Set date, time and time zone automatically</strong></td><td>The schedule is worked out from the phone clock and time zone</td><td>Strongly recommended</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="warn">
+  <p><strong>Phone power saving.</strong> Some phones add their own power saving on top of Android’s. It can stop a shoot even when the app is exempt from battery optimisation. If a shoot ends with “Something outside the app stopped it”, look in your phone’s settings for battery or app-sleep options and allow TwyLapse to run in the background. <span class="todo">add per-maker tips?</span></p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="concepts">3. How TwyLapse plans a night</h2>
+
+<p>Three ideas are enough to use the app.</p>
+
+<h3>Shoot plan</h3>
+<p>One shoot: when, where, which way the camera points, which camera and lens, and the interval. From these the app works out the sun and the moon and builds a <strong>schedule</strong>.</p>
+
+<h3>Capture control</h3>
+<p>The schedule is a chain of time slots. Each slot has a <strong>capture control</strong> — the rule for its exposure.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Capture control</th><th>Exposure</th><th>When</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Daytime</strong></td><td>Auto (metered)</td><td>While it is light</td></tr>
+    <tr><td><strong>Sunset</strong></td><td>Auto, usually darker (negative EV) to keep the colour of the sun</td><td>When the setting sun is in the frame</td></tr>
+    <tr><td><strong>Into the night</strong></td><td>Auto, gliding to the night exposure ⅓ stop at a time</td><td>Evening twilight (inserted automatically)</td></tr>
+    <tr><td><strong>Night</strong></td><td>Fixed — the same all night</td><td>When the sun is far enough below the horizon</td></tr>
+    <tr><td><strong>Out of the night</strong></td><td>Auto, starting from the night exposure and lowering it as the sky brightens</td><td>Morning twilight (inserted automatically)</td></tr>
+    <tr><td><strong>Sunrise</strong></td><td>Auto, usually darker</td><td>When the rising sun is in the frame</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Sunset and Sunrise are used only if the sun actually enters the frame, given the direction and lens. Otherwise that stretch of twilight is Daytime.</p>
+
+<h3>Defaults and templates</h3>
+<ul>
+  <li><strong>Capture control defaults</strong> (Menu → <strong>Defaults</strong>): your usual settings for Night, Sunset, Sunrise and Daytime. New plans start from them; changing a plan does not change the defaults.</li>
+  <li><strong>Plan templates</strong>: a saved plan to start from, such as “Starscape (with sunrise)”. Make your own with <strong>Save as template</strong> in a plan’s ⋮ menu.</li>
+</ul>
+
+<figure class="shot"><div class="ph wide">Diagram: plan templates → shoot plan → capture controls</div></figure>
+
+<!-- ============================================================ -->
+<h2 id="plan">4. Making a shoot plan</h2>
+
+<div class="step">
+  <figure class="shot"><div class="ph">Screenshot: Shoot plan (overview)</div></figure>
+  <div>
+    <p>Open <strong>Menu → Shoot plan</strong> and tap <strong>+ New shoot plan</strong>, or start from <strong>Plan templates</strong> with <strong>Create a plan from this template</strong>.</p>
+    <p>The plan screen has three pages; swipe left and right between them: the overview, the <strong>Schedule</strong>, and the <strong>Simulation</strong>.</p>
+  </div>
+</div>
+
+<h3>Start and End</h3>
+<p>Tap the date or the time to change it. A whole night usually runs from before sunset to after sunrise.</p>
+
+<h3>Location</h3>
+<p>The sun and moon times depend on where you are. Set the location in any of these ways:</p>
+<ul>
+  <li><strong>+ Use my location</strong> — the phone’s current position.</li>
+  <li><strong>📍 Pick on the map</strong> — tap the place on the map.</li>
+  <li><strong>Paste coordinates</strong> — paste “latitude, longitude”. Coordinates copied from Google Maps work as they are.</li>
+  <li><strong>Import a saved location</strong> — from <strong>Menu → Locations</strong>.</li>
+</ul>
+<p>The altitude can be typed in, or looked up from the coordinates with <strong>🗻 Look up from the coordinates</strong> (needs the internet).</p>
+
+<h3>Camera and lens</h3>
+<p>Pick from <strong>My gear</strong>. For the phone camera the lenses are the phone’s own cameras. For a zoom lens, set the focal length you will actually use — it affects the field of view and the NPF value.</p>
+
+<h3>Interval</h3>
+<p>The time from one shot to the next. Below it the app shows the <strong>NPF</strong> shutter speed (the longest exposure before stars start to trail) and the <strong>minimum interval</strong>. NPF is only a guide; it does not change the exposure.</p>
+<ul>
+  <li>The interval cannot be shorter than the longest shutter speed in the plan plus a margin. If you try, the app says so — shorten the shutter speed first.</li>
+  <li>“Can be set” is not the same as “runs smoothly”. Some cameras need a second or more extra to refresh live view. The <a href="#after">capture report</a> tells you whether the interval was enough.</li>
+</ul>
+
+<h3>Direction and elevation</h3>
+<div class="step">
+  <figure class="shot"><div class="ph">Screenshot: direction compass and elevation arc</div></figure>
+  <div>
+    <p>Drag the arrow round the compass to set the direction the camera faces, and along the arc to set the elevation. Tap the number to type a precise value. Turn on <strong>Shoot in landscape</strong> if the camera is horizontal.</p>
+    <p>The app uses this to decide whether the sun enters the frame (and so whether Sunset or Sunrise is used).</p>
+  </div>
+</div>
+
+<h3>Schedule</h3>
+<div class="step">
+  <figure class="shot"><div class="ph">Screenshot: Schedule page</div></figure>
+  <div>
+    <p>The left band shows the sun altitude and the twilight (civil, nautical, astronomical). The right band shows the capture controls in order, with the times and sun altitudes of each boundary, and moonrise and moonset.</p>
+    <p>Drag a boundary up or down to move it. Tap a capture control to edit it for this plan (<a href="#exposure">chapter 5</a>).</p>
+  </div>
+</div>
+
+<h3>Simulation</h3>
+<p>Shows what is in the frame at a given time and direction — the sun, the moon and the Milky Way — so you can check the composition before you go. <span class="todo">confirm what is drawn</span></p>
+
+<h3>Output (phone camera)</h3>
+<p>Under <strong>Output</strong>: <strong>Make a video automatically</strong>, <strong>Write DNG</strong> and <strong>Write JPEG</strong>. DNG frames are large (often 20–30 MB each); turn DNG off if space is short.</p>
+
+<!-- ============================================================ -->
+<h2 id="exposure">5. Adjusting the exposure</h2>
+
+<p>Each capture control can be changed for one plan (tap it in the schedule) or for all new plans (<strong>Menu → Defaults</strong>). <strong>Undo changes</strong> puts back what was there when you opened the screen; <strong>Pick from the defaults</strong> replaces it with one of your defaults.</p>
+
+<h3>Night</h3>
+<div class="step">
+  <figure class="shot"><div class="ph">Screenshot: Night</div></figure>
+  <div>
+    <ul>
+      <li><strong>Fixed exposure</strong> — the ISO, aperture and shutter speed used all night. Set them for the sky and the place on the night (moon, light pollution).</li>
+      <li><strong>Fixed-exposure sun altitude</strong> — how far below the horizon the sun must be for Night to begin and end.</li>
+      <li><strong>Pre-night compensation (EV)</strong> — the brightness to aim for while going into the night.</li>
+      <li><strong>Post-night compensation (EV)</strong> — the same for coming out of it. Useful when sunrise is shot dark but you want the dawn before it brighter.</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Sunset and Sunrise</h3>
+<div class="step">
+  <figure class="shot"><div class="ph">Screenshot: Sunset</div></figure>
+  <div>
+    <ul>
+      <li><strong>Exposure compensation (EV)</strong> — shooting darker keeps the colour of the sun but loses the landscape. How far to go is your call.</li>
+      <li><strong>Sun altitude</strong> — where in the twilight this control ends (sunset) or begins (sunrise).</li>
+      <li><strong>Exposure smoothing (this plan)</strong> — the light changes fast here, so these two can have their own smoothing. <strong>Global</strong> means “use the global setting”.</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Daytime</h3>
+<p>Daytime can start from the bright side or the dark side, so you choose its <strong>Reference</strong>: <strong>Bright limit</strong>, <strong>Midpoint</strong> or <strong>Dark limit</strong>.</p>
+
+<h3>Exposure limits and range</h3>
+<div class="step">
+  <figure class="shot"><div class="ph">Screenshot: Exposure limits and range</div></figure>
+  <div>
+    <p>Set the <strong>Bright limit</strong> and <strong>Dark limit</strong> of ISO, aperture and shutter speed. Drag the rows with the ⇅ handle to set the order: the top one moves first; when it reaches its limit the next one moves.</p>
+    <ul>
+      <li>ISO on top: noise drops as soon as it gets light.</li>
+      <li>Aperture on top: stop down early for a sunstar.</li>
+      <li>Aperture at the bottom: vignetting stays the same for longer.</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Exposure smoothing</h3>
+<p><strong>Menu → Exposure smoothing</strong> sets the global values.</p>
+<ul>
+  <li><strong>Hysteresis</strong> — the exposure does not move while the light stays within this band around the target. Wider ignores small flickers but reacts later.</li>
+  <li><strong>Smoothness (min)</strong> — how long the exposure takes to reach its full rate of change. Longer eases each change and reduces flicker, but lags a little behind fast changes such as passing clouds.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="phone">6. Shooting with the phone camera</h2>
+<ol>
+  <li>Fix the phone to a tripod and frame the shot. Connect a power bank for a long shoot.</li>
+  <li>Open the plan and choose the phone as the camera.</li>
+  <li>Tap the start icon. The plan shows <strong>● Shooting</strong>; if the start time is still ahead it shows <strong>● Waiting to start</strong>.</li>
+  <li>You can close the app. A “Shooting” notification shows the progress and has <strong>Stop</strong>.</li>
+</ol>
+<p>The video goes into <strong>Movies/TwyLapse</strong>; DNG and JPEG frames go into <strong>Pictures/TwyLapse</strong>, in a folder for each shoot.</p>
+<div class="note">
+  <p>The phone camera can be used by one plan at a time. Some phones cannot move the focus; the app then sets what it can and tells you.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="camera">7. Shooting with a Canon camera</h2>
+<p>Needs the <strong>Shoot with an external camera</strong> add-on, or its trial (<a href="#addons">chapter 11</a>).</p>
+
+<h3>Prepare the camera</h3>
+<ul>
+  <li>Set the mode dial to <strong>M</strong> (manual) for stills. In movie mode, or on some models in any mode but M, the app waits and tells you.</li>
+  <li>Set Picture Style to something other than <strong>Auto</strong> — Auto can make the video flicker.</li>
+  <li>Insert a card with plenty of space, with the write-protect switch off.</li>
+  <li>Use a full battery or a mains adapter.</li>
+  <li>Set up the camera’s Wi-Fi for CCAPI. <span class="todo">steps per camera / link to Canon</span></li>
+</ul>
+
+<h3>Connect</h3>
+<p>The phone and the camera must be on the same Wi-Fi network. Some ways to do that:</p>
+<ul>
+  <li>A travel router that both join (the most stable).</li>
+  <li>The phone’s hotspot. <span class="todo">confirm</span></li>
+  <li>The access point of an external device (<strong>TLP-Edge-…</strong>, <a href="#edge">chapter 8</a>).</li>
+</ul>
+<p>Then use <strong>Look for cameras</strong> (in <strong>My cameras</strong>). A camera found for the first time can be added to <strong>My cameras</strong> straight away. If the camera asks for a login, enter it under <strong>Camera login (only if the camera needs one)</strong> in the camera’s settings.</p>
+
+<h3>Shoot</h3>
+<p>Pick the camera in the plan and tap start. Before the first frame the app settles the exposure (<strong>Settling the exposure before the shoot</strong>). Leave the camera alone until the shoot ends; at the end the camera’s settings are put back.</p>
+
+<h3>Several cameras</h3>
+<p>Each plan controls one camera; run several plans to use several cameras. <strong>Sync shooting</strong> with <strong>Extra cameras</strong> fires them together. <strong>Menu → Camera bookings</strong> shows which plan uses which camera when; overlapping plans are marked ✕ and cannot start. <span class="todo">confirm limits</span></p>
+
+<!-- ============================================================ -->
+<h2 id="edge">8. Using an external device</h2>
+<p>An external device (M5Stack CoreS3 or M5StickS3) stays by the camera and runs the shoot, so the phone can go home with you. Needs the <strong>Control the camera from an external device</strong> add-on.</p>
+
+<h3>Write the software (first time)</h3>
+<ol>
+  <li>Connect the device to the phone with a USB cable (the device end is USB-C; a charge-only cable will not work).</li>
+  <li><strong>Menu → Update firmware (USB)</strong>. <strong>Check</strong> reads the device without writing; <strong>Write</strong> installs the software.</li>
+  <li>If it cannot enter download mode, hold the power button for about two seconds, and press it once more when the LED blinks.</li>
+</ol>
+
+<h3>Register the device</h3>
+<div class="step">
+  <figure class="shot"><div class="ph">Screenshot: Device settings</div></figure>
+  <div>
+    <ol>
+      <li><strong>Menu → Device settings → + New device</strong>.</li>
+      <li>The device shows a QR code. Tap <strong>Scan the device QR code</strong> and scan it.</li>
+      <li>Give it a name (letters and digits only), choose the network, and press <strong>Send settings</strong>.</li>
+    </ol>
+    <p>The phone becomes the device’s owner. A device registered to another phone has to be released there first.</p>
+  </div>
+</div>
+
+<h3>Network</h3>
+<ul>
+  <li><strong>Make the device an access point</strong> — the device makes its own Wi-Fi (<strong>TLP-Edge-…</strong>). Join it from the phone and the camera. Handy outdoors.</li>
+  <li>Off — the device joins an existing network (enter its SSID and password).</li>
+</ul>
+
+<h3>Shoot</h3>
+<p>In the plan, set <strong>Controller</strong> to the device and start. The plan is sent to the device, which shoots on its own; the phone shows progress while it is in range and can stop it. While a plan is on the device it cannot be edited — use <strong>Remove from the device</strong> first.</p>
+
+<!-- ============================================================ -->
+<h2 id="after">9. After the shoot</h2>
+
+<h3>Capture reports</h3>
+<div class="step">
+  <figure class="shot"><div class="ph">Screenshot: Capture report</div></figure>
+  <div>
+    <p><strong>Menu → Capture reports</strong>. One report per shoot: frames shot, frames on time, metering and exposure, and the measured interval against the one you set.</p>
+    <p><strong>Findings</strong> suggest what to change next time, for example “Live view is not refreshing fast enough for this interval. A longer interval will be more stable.”</p>
+  </div>
+</div>
+
+<h3>Activity history and logs</h3>
+<p><strong>Activity history</strong> lists starts, stops and how each shoot ended. If you contact support about a problem, the <strong>Debug log</strong> helps us — <strong>Fetch logs</strong> saves it to the Download folder.</p>
+
+<!-- ============================================================ -->
+<h2 id="trouble">10. Messages and troubleshooting</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Message</th><th>What to do</th></tr></thead>
+  <tbody>
+    <tr><td>The camera is in movie mode…</td><td>Set the camera to stills, mode M. Shooting starts once you do.</td></tr>
+    <tr><td>Set the camera to M (manual)…</td><td>This model’s mode cannot be changed by the app. Turn the dial to M.</td></tr>
+    <tr><td>Picture Style is Auto. The video may flicker.</td><td>Choose another Picture Style. The shoot carries on either way.</td></tr>
+    <tr><td>Camera not found</td><td>Check the camera is on and on the same Wi-Fi as the phone (or device).</td></tr>
+    <tr><td>The camera is refusing the connection…</td><td>Delete the Wi-Fi settings on the camera and set them up again.</td></tr>
+    <tr><td>No camera login has been set / The camera login is wrong</td><td>Enter the user ID and password in the camera’s settings under My gear.</td></tr>
+    <tr><td>There is no card in the camera / card is write-protected / nearly full</td><td>Check the card.</td></tr>
+    <tr><td>The camera is too hot to shoot</td><td>Let it cool. In summer, shade the camera.</td></tr>
+    <tr><td>An interval of … s is below the minimum</td><td>Shorten the longest shutter speed first, or choose a longer interval.</td></tr>
+    <tr><td>Not enough free space to start</td><td>Free up space on the phone; turning off DNG saves the most.</td></tr>
+    <tr><td>Something outside the app stopped it</td><td>The phone’s power saving stopped the app. See <a href="#permissions">chapter 2</a>.</td></tr>
+    <tr><td>The shoot ended because the phone reached its limit on how long an app may keep running</td><td>Keep the app open (screen on) during the shoot; the limit does not apply then.</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="todo">Add more messages and screenshots as questions come in.</p>
+
+<!-- ============================================================ -->
+<h2 id="addons">11. Add-ons, trial and refunds</h2>
+<p><strong>Menu → Add-ons</strong>.</p>
+<ul>
+  <li><strong>Shoot with an external camera</strong> — <strong>Try</strong> starts a trial of 10 shoots <span class="todo">confirm</span>. A shoot counts once at least one frame is taken; a shoot that never found the camera does not count. A shoot that is running finishes even if the trial runs out. <strong>Buy</strong> becomes available once the trial has started. Buying also removes the ads.</li>
+  <li><strong>Control the camera from an external device</strong> — needs the add-on above. No trial.</li>
+</ul>
+<p>When the trial is used up, the plans you made and the cameras you added stay; buy the add-on to use them again.</p>
+<p><strong>Refunds:</strong> within 48 hours of purchase you can request a refund yourself through Google Play. We cannot refund after that. On a new phone, sign in with the same Google account and your purchase comes back.</p>
+
+<!-- ============================================================ -->
+<h2 id="other">12. Other settings</h2>
+<ul>
+  <li><strong>Language</strong> — English, 日本語, or <strong>Match the phone</strong>.</li>
+  <li><strong>Theme</strong> — Light, Dark or Match the phone.</li>
+  <li><strong>Colors</strong> — the colours of each capture control in the schedule.</li>
+  <li><strong>Locations</strong>, <strong>My cameras</strong>, <strong>My lenses</strong> — saved places and gear. A camera not in the list can be added with <strong>+ Add a camera that is not listed</strong>.</li>
+  <li><strong>Reset to factory settings</strong> — erases plans, gear, locations, logs and settings on this phone. Purchased add-ons stay. Settings on external devices are not touched. This cannot be undone.</li>
+</ul>
+
+<h2 id="support">Support</h2>
+<p><a href="mailto:support@laxei.app">support@laxei.app</a> — tell us the phone model, the camera model and what happened. A debug log helps.</p>
+
+</main>
+</div>
+
+<footer class="site-footer">
+  <div class="inner">
+    <span>&copy; laxei</span>
+    <a href="index.html">TwyLapse</a>
+    <a href="../privacy.html">Privacy policy</a>
+    <a href="mailto:support@laxei.app">support@laxei.app</a>
+  </div>
+</footer>
+
+</body>
+</html>
