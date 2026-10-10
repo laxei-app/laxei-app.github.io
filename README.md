@@ -15,6 +15,10 @@ the source code of any app.
 | `index.html` | <https://laxei-app.github.io/> |
 | `privacy.html` | <https://laxei-app.github.io/privacy.html> — privacy policy for TwyLapse (English) |
 | `privacy.jp.html` | <https://laxei-app.github.io/privacy.jp.html> — same policy in Japanese |
+| `terms.html` / `terms.jp.html` | Terms of use for TwyLapse (English / Japanese) |
+| `legal.html` / `legal.jp.html` | Seller information under Japan's Act on Specified Commercial Transactions (the Japanese page is authoritative) |
+| `support.html` / `support.jp.html` | Support contact and help (English / Japanese) |
+| `app-ads.txt` | AdMob authorized sellers file. Must stay at the root of the domain |
 | `twylapse/index.html` | TwyLapse product page (English) |
 | `twylapse/index.jp.html` | same in Japanese |
 | `twylapse/manual.html` | TwyLapse manual (English) |
@@ -28,11 +32,17 @@ declaration, and they have to keep working for as long as the apps are listed.
 
 ## Editing
 
+**Do not edit this repository directly.** The pages are written in the private
+repository `laxei-app.github.io.draft` (`site/`) and copied here by its
+`tools/publish.py`, which refuses to copy pages that still carry draft markers
+(or, with `--hold-drafts`, holds those pages back and publishes the rest).
+
+
 Plain HTML. Nothing is loaded from another site — **no external stylesheet,
 font, script or image** — so the site sets no cookies and no request leaves
 for a third party. Please keep it that way.
 
-- The privacy policy and the top page carry their own CSS inline and use no
+- The privacy policy, the terms, the legal notice, the support page and the top page carry their own CSS inline and use no
   images. Keep them that simple.
 - The product pages and manuals (`twylapse/`) share `assets/site.css` and may
   use images, as long as the images are stored in this repository

@@ -1,0 +1,147 @@
+/* Shared style for the product pages (twylapse/...).
+   Served from this site only: no external fonts, scripts or images. */
+
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a;
+  --muted: #666;
+  --bg: #fff;
+  --bg-soft: #f5f6f8;
+  --line: #e4e4e4;
+  --link: #1565c0;
+  --accent: #c2560f;        /* dusk orange */
+  --accent-2: #2d3a8c;      /* night blue */
+  --note-bg: #eef4fc;
+  --warn-bg: #fff4e5;
+  --todo-bg: #fff3a8;
+  --todo-fg: #5a4a00;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e4e4e4;
+    --muted: #9a9a9a;
+    --bg: #161616;
+    --bg-soft: #1f2023;
+    --line: #2e2e2e;
+    --link: #8ab4f8;
+    --accent: #f0a060;
+    --accent-2: #9aa8ff;
+    --note-bg: #1b2533;
+    --warn-bg: #2e2416;
+    --todo-bg: #4a4210;
+    --todo-fg: #fff1a0;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 4.5rem; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Arial, sans-serif;
+  line-height: 1.8;
+  color: var(--fg);
+  background: var(--bg);
+}
+a { color: var(--link); }
+img { max-width: 100%; height: auto; }
+code, kbd { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: .92em; }
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .inner {
+  max-width: 68rem; margin: 0 auto; padding: .6rem 1rem;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.brand { font-weight: 700; text-decoration: none; color: var(--fg); letter-spacing: .02em; }
+.site-nav { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .95rem; }
+.site-nav a { text-decoration: none; }
+.site-nav a[aria-current="page"] { color: var(--fg); font-weight: 600; }
+.lang { margin-left: auto; font-size: .9rem; }
+
+/* ---------- page body ---------- */
+main { max-width: 46rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+h1 { font-size: 1.9rem; line-height: 1.35; margin: 0 0 .5rem; }
+h2 { font-size: 1.35rem; margin: 3rem 0 .75rem; padding-top: .75rem; border-top: 1px solid var(--line); }
+h3 { font-size: 1.08rem; margin: 2rem 0 .5rem; }
+li { margin: .3rem 0; }
+.lead { font-size: 1.1rem; color: var(--muted); }
+
+/* ---------- hero (product page) ---------- */
+.hero {
+  background: linear-gradient(180deg, #0d1330 0%, #2d3a8c 45%, #c2560f 85%, #f2b36b 100%);
+  color: #fff;
+}
+.hero .inner { max-width: 46rem; margin: 0 auto; padding: 3.5rem 1rem 3rem; }
+.hero h1 { font-size: 2.4rem; margin: 0; }
+.hero .tagline { font-size: 1.25rem; margin: .5rem 0 1.25rem; line-height: 1.5; }
+.hero p { margin: .5rem 0; opacity: .92; }
+.btn {
+  display: inline-block; padding: .55rem 1.1rem; border-radius: 999px;
+  background: #fff; color: #1a1a1a; text-decoration: none; font-weight: 600;
+  margin: .75rem .5rem 0 0;
+}
+.btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.7); }
+
+/* ---------- cards ---------- */
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); margin: 1rem 0; }
+.card { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; }
+.card h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.card p { margin: .3rem 0; font-size: .95rem; }
+.card .tag { display: inline-block; font-size: .78rem; padding: 0 .5rem; border-radius: 999px; background: var(--accent); color: #fff; }
+
+/* ---------- tables ---------- */
+.table-wrap { overflow-x: auto; margin: 1rem 0; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { border: 1px solid var(--line); padding: .45rem .6rem; text-align: left; vertical-align: top; }
+th { background: var(--bg-soft); }
+
+/* ---------- notes ---------- */
+.note, .warn { border-radius: 8px; padding: .75rem 1rem; margin: 1rem 0; }
+.note { background: var(--note-bg); }
+.warn { background: var(--warn-bg); }
+.note > :first-child, .warn > :first-child { margin-top: 0; }
+.note > :last-child, .warn > :last-child { margin-bottom: 0; }
+
+/* Draft markers: things still to confirm before publishing. Remove them all before going live. */
+.todo { background: var(--todo-bg); color: var(--todo-fg); padding: 0 .3em; border-radius: 3px; font-size: .9em; }
+
+/* ---------- screenshots ---------- */
+figure { margin: 1.25rem 0; }
+figcaption { font-size: .88rem; color: var(--muted); margin-top: .35rem; }
+.shot img { max-width: 300px; width: 100%; border-radius: 12px; border: 1px solid var(--line); }
+/* Placeholder until the real screenshot exists */
+.shot .ph {
+  max-width: 300px; aspect-ratio: 9 / 16; border: 2px dashed var(--line); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: 1rem; color: var(--muted); font-size: .88rem; background: var(--bg-soft);
+}
+.shot .ph.wide { max-width: 100%; aspect-ratio: 16 / 9; }
+
+/* Text beside a screenshot on wide screens, below it on phones */
+.step { display: grid; gap: 1rem 1.5rem; margin: 1.25rem 0; }
+@media (min-width: 720px) {
+  .step { grid-template-columns: 220px 1fr; align-items: start; }
+  .step .shot { margin: 0; }
+}
+.step > div > :first-child { margin-top: 0; }
+
+/* ---------- manual layout: sticky table of contents on wide screens ---------- */
+.manual { max-width: 68rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+.manual main { padding: 0; max-width: 46rem; margin: 0; }
+.toc { font-size: .92rem; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: .75rem 1rem; margin-bottom: 2rem; }
+.toc summary { cursor: pointer; font-weight: 600; }
+.toc ol { padding-left: 1.3rem; margin: .5rem 0 0; }
+.toc li { margin: .15rem 0; }
+.toc a { text-decoration: none; }
+@media (min-width: 960px) {
+  .manual { display: grid; grid-template-columns: 15rem 1fr; gap: 3rem; }
+  .toc { position: sticky; top: 4.5rem; align-self: start; max-height: calc(100vh - 6rem); overflow: auto; margin: 0; }
+}
+
+/* ---------- footer ---------- */
+.site-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+.site-footer .inner { max-width: 68rem; margin: 0 auto; padding: 1.25rem 1rem 2rem; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
