@@ -1,8 +1,8 @@
 # laxei-app.github.io
 
-Source of the public website of **laxei**, served by GitHub Pages.
+Source of the public website of **laxei.app** (Japanese: 楽世.app, operated by Yoshikazu Eto), served by GitHub Pages at the custom domain laxei.app.
 
-<https://laxei-app.github.io/>
+<https://laxei.app/>
 
 This repository holds the pages that have to be reachable from the Google Play
 listing of our apps: the privacy policy and the support contact. It is **not**
@@ -12,9 +12,9 @@ the source code of any app.
 
 | File | URL |
 | --- | --- |
-| `index.html` | <https://laxei-app.github.io/> |
-| `privacy.html` | <https://laxei-app.github.io/privacy.html> — privacy policy for TwyLapse (English) |
-| `privacy.jp.html` | <https://laxei-app.github.io/privacy.jp.html> — same policy in Japanese |
+| `index.html` | <https://laxei.app/> |
+| `privacy.html` | <https://laxei.app/privacy.html> — privacy policy for TwyLapse (English) |
+| `privacy.jp.html` | <https://laxei.app/privacy.jp.html> — same policy in Japanese |
 | `terms.html` / `terms.jp.html` | Terms of use for TwyLapse (English / Japanese) |
 | `legal.html` / `legal.jp.html` | Seller information under Japan's Act on Specified Commercial Transactions (the Japanese page is authoritative) |
 | `support.html` / `support.jp.html` | Support contact and help (English / Japanese) |
