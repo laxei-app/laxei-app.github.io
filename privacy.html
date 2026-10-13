@@ -61,7 +61,7 @@ th { width: 11em; font-weight: 600; }
   <li>Collection of usage and crash information is <strong>optional</strong>, and <strong>nothing is collected until you agree to it</strong>. Declining limits no feature.</li>
   <li>We never receive your photographs, the dates on which you shoot, your coordinates, or any text you enter.</li>
   <li>The free version shows advertisements delivered by Google AdMob. Where the law requires it, you are asked before personalized advertising is used, and you can change your choice at any time. The paid add-ons remove advertisements.</li>
-  <li>Some features contact other services directly from your phone: looking up the altitude of a location, displaying the map, and downloading the camera catalog and device software. Section 5 lists exactly what they receive.</li>
+  <li>Some features contact other services directly from your phone: displaying the map, and downloading the camera catalog and device software. Section 5 lists exactly what they receive.</li>
   <li>We do not sell your information.</li>
 </ul>
 
@@ -102,7 +102,6 @@ th { width: 11em; font-weight: 600; }
 <h2>5. Information sent to other services when you use certain features</h2>
 <p>The following connections are made <strong>directly from your phone</strong> to the services named. We do not receive the information. Each service handles it under its own privacy policy.</p>
 <ul>
-  <li><strong>Altitude of a location</strong> &mdash; when you set a shooting location, its <strong>latitude and longitude</strong> are sent to <span class="todo">TODO: name of the elevation service</span> to look up the altitude, which matters for the times of sunrise and sunset. This happens automatically when you set a location while online; you can also type the altitude in yourself. <span class="todo">TODO: confirm once the app change is made</span></li>
   <li><strong>Map and your location</strong> &mdash; when you pick a location on the map, map images are loaded from a map service, currently the <strong>OpenStreetMap Foundation</strong>&rsquo;s tile servers. The map opens around the shooting location already set, so the map service receives <strong>the area around that location &mdash; in effect, its approximate position</strong> &mdash; as well as the areas you move to and your IP address. If you would rather not share this, set the location by typing or pasting coordinates instead of using the map. If we change the map service, we will update this policy. (<a href="https://osmfoundation.org/wiki/Privacy_Policy">OSMF privacy policy</a>)</li>
   <li><strong>Camera catalog and device software</strong> &mdash; the list of cameras and lenses, and the software written to external devices, are downloaded from <strong>GitHub</strong>, which receives your IP address. (<a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub privacy statement</a>)</li>
   <li><strong>QR codes</strong> &mdash; the setup code of an external device is read with Google&rsquo;s code scanner in Google Play services. The image is processed on the phone and is not given to the App or to us; Google may collect diagnostic information about the scanner.</li>
@@ -112,16 +111,16 @@ th { width: 11em; font-weight: 600; }
 <h2>6. Information we do not collect</h2>
 <ul>
   <li>the photographs and videos you record</li>
-  <li>the date of a session, and the latitude, longitude, altitude or name of your shooting location</li>
+  <li>the date of a session, and the latitude, longitude or name of your shooting location</li>
   <li>the names of shooting plans, places and devices, Wi&#8209;Fi network names (SSIDs) and passwords, camera serial numbers and MAC addresses, and any other text you enter or configure</li>
   <li>your name, e&#8209;mail address, telephone number, or any account credentials (the App has no accounts)</li>
 </ul>
 <p>Dates and coordinates are excluded deliberately. The App&rsquo;s schedule follows sunrise, sunset and twilight, which means that <strong>the latitude of a shooting location can be inferred from the times of twilight across the seasons</strong>. Reporting only the time of day tells us what we need without revealing where you were.</p>
 
 <h2>7. Information kept on your device (not sent to us)</h2>
-<p>The following is required for the App to work. It is stored on your device, or exchanged only with your own camera and external device over your local network or Bluetooth, and is <strong>not transmitted to us</strong>. The location of a shooting place is, however, sent to the elevation and map services described in section 5.</p>
+<p>The following is required for the App to work. It is stored on your device, or exchanged only with your own camera and external device over your local network or Bluetooth, and is <strong>not transmitted to us</strong>. When you use the map, however, the map service described in section 5 learns the approximate area of the shooting place.</p>
 <ul>
-  <li>the coordinates and altitude of your shooting locations, obtained from your device&rsquo;s location services or entered by you (sent only to the services in section 5, never to us)</li>
+  <li>the coordinates of your shooting locations, obtained from your device&rsquo;s location services or entered by you (never sent to us; only the map service in section 5 learns the approximate area when you use the map)</li>
   <li>the photographs and videos the App records, saved to <code>Pictures/TwyLapse</code> and <code>Movies/TwyLapse</code> on your device</li>
   <li>shooting plans, your registered equipment, external device settings, and Wi&#8209;Fi and camera credentials (credentials are stored in encrypted form)</li>
   <li>a random identifier the App creates so that your external devices can recognize your phone</li>
